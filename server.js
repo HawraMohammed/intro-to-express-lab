@@ -2,14 +2,14 @@ const express = require('express')
 const app = express()
 app.listen(3000)
 // Exersice 1:
-app.get("/greetings", (req, res) => {
-    const name = req.query.name;
+app.get("/greetings/:name", (req, res) => {
+    const name = req.params.name;
     res.send(`<h1>Hello There ${name}!!</h1>`)
 }
 )
 // Exercise 2
-app.get("/roll", (req, res) => {
-    const number = req.query.number;
+app.get("/roll/:number", (req, res) => {
+    const number = req.params.number;
     if (!Number(number))
         res.send(`<h1>You must specify a number!</h1>`)
     else {
@@ -24,8 +24,8 @@ const collectibles = [
     { name: 'autographed picture of a dog', price: 10 },
     { name: 'vintage 1970s yogurt SOLD AS-IS', price: 0.99 }
 ];
-app.get("/collections", (req, res) => {
-    const collection = req.query.number;
+app.get("/collections/:number", (req, res) => {
+    const collection = req.params.number;
     if ((collection - 1) >= collectibles.length || collection < 1)
         res.send(`<h1>This item is not yet in stock. Check back soon!</h1>`)
     else
